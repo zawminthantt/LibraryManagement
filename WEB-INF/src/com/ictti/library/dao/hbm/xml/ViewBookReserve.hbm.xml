@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ictti.library.business.entity">
+	<class
+		name="ViewBookReserve"
+		table="viewbookreserve"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="id"
+			type="integer"
+			column="callnumber_id"
+		>
+			<generator class="identity"/>
+		</id>
+
+		<property
+			name="callnumbercode"
+			column="call_number_code"
+			type="string"
+			not-null="true"
+			length="50"
+		/>
+		<property
+			name="issusestatus"
+			column="issuse_status"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="bookid"
+			column="book_id"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="authorid"
+			column="author_id"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="title"
+			column="title"
+			type="string"
+			not-null="false"
+			length="100"
+		/>
+		<property
+			name="ISBN"
+			column="ISBN_no"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="authorname"
+			column="author_name"
+			type="string"
+			not-null="false"
+			length="100"
+		/>
+		<property
+			name="userid"
+			column="user_id"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="username"
+			column="user_name"
+			type="string"
+			not-null="false"
+			length="30"
+		/>
+		<property
+			name="reservestatus"
+			column="reserve_status"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="reservedate"
+			column="reserve_date"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		
+
+
+	</class>	
+</hibernate-mapping>

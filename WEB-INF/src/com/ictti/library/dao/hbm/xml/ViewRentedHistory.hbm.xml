@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+   "-//Hibernate/Hibernate Mapping DTD//EN"
+   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.ictti.library.business.entity">
+        <class name="ViewRentedHistory" table="viewrentedhistory" lazy="false">
+                <meta attribute="sync-DAO">false</meta>
+                <id name="bookloanId" column="book_loan_id" type="integer">
+                        <generator class="identity" />
+                </id>
+			 <property name="callNumberId" column="callnumber_id" type="integer" />
+                <property name="bookId" column="book_id" type="integer" />
+                <property name="userId" column="user_id" type="integer" />
+                <property name="isbn" column="isbn" type="string" />
+                <property name="title" column="title" type="string" />
+                <property name="callNumber" column="call_number_code" type="string" />
+                <property name="returnDate" column="return_date" type="date" />
+                <property name="authorName" column="author_name" type="string" />
+                <property name="issueDate" column="issue_date" type="date" />
+                <property name="dueDate" column="due_date" type="date" />
+                <property name="lateFees" column="late_fees" type="integer" />
+        </class>
+</hibernate-mapping>
+

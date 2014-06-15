@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd http://www.directwebremoting.org/schema/spring-dwr 
+http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
+	<!--For Login -->
+	<bean id="idUserService" class="com.ictti.library.business.service.UserService">
+		<property name="myUserDao" ref="idUserDao" />
+		<property name="myUserTypeDao" ref="idUserTypeDao" />
+	</bean>
+	<!--For Registration -->
+	<bean id="idRegisterService" class="com.ictti.library.business.service.UserService">
+		<property name="myUserDao" ref="idUserDao" />
+		<property name="myUserTypeDao" ref="idUserTypeDao" />
+		<property name="myIcttiCourseDao" ref="idIcttiCourseDao" />
+
+	</bean>
+	<bean id="idUpdateService" class="com.ictti.library.business.service.UserService">
+		<property name="myUserDao" ref="idUserDao" />
+		<property name="myUserTypeDao" ref="idUserTypeDao" />
+	</bean>
+
+	<!-- For Detail Search -->
+	<bean id="idAutoService" class="com.ictti.library.business.service.SearchDetailService">
+		<property name="myBookListDao" ref="idBookListDao" />
+		<dwr:remote javascript="AjaxTitleSearch">
+			<dwr:include method="findBookByLikeFromService" />
+		</dwr:remote>
+		<property name="myAuthorDao" ref="idAuthorDao" />
+		<dwr:remote javascript="AjaxAuthorSearch">
+			<dwr:include method="findByAuthorNameLikeService" />
+		</dwr:remote>
+
+		<property name="myCategoryDao" ref="idCategoryDao" />
+		<property name="mySubCategoryDao" ref="idSubCategoryDao" />
+		<property name="myViewBookSearchDao" ref="idViewSearchBookDao" />
+		<property name="myPhotoDao" ref="idPhotoDao" />
+		<dwr:remote javascript="AjaxSearchSubcategory">
+			<dwr:include method="getBySubcategory" />
+			<dwr:include method="getByCategorySubcategory" />
+		</dwr:remote>
+	</bean>
+
+	<!-- For Admin Book Register -->
+	<bean id="idBookRegisterService" class="com.ictti.library.business.service.AdminService">
+		<property name="myBookListDao" ref="idBookListDao" />
+		<property name="myCategoryDao" ref="idCategoryDao" />
+		<property name="mySubCategoryDao" ref="idSubCategoryDao" />
+		<property name="myAuthorDao" ref="idAuthorDao" />
+		<property name="myPhotoDao" ref="idPhotoDao" />
+		<property name="myPublisherDao" ref="idPublisherDao" />
+		<property name="myCallNumberDao" ref="idCallNumberDao" />
+		<property name="myAccessionCodeDao" ref="idAccessionDao" />
+		<property name="myBookAuthorDao" ref="idBookAuthorDao" />
+		<dwr:remote javascript="AjaxSearchSubcategory">
+			<dwr:include method="getBySubcategory" />
+			<dwr:include method="getByCategorySubcategory" />
+		</dwr:remote>
+		<dwr:remote javascript="AjaxAuthorSearch">
+			<dwr:include method="findByAuthorNameLikeService" />
+		</dwr:remote>
+	</bean>
+	<dwr:configuration>
+		<dwr:convert type="bean"
+			class="com.ictti.library.business.entity.BookList" javascript="BookList" />
+		<dwr:convert type="bean"
+			class="com.ictti.library.business.entity.Author" javascript="Author" />
+		<dwr:convert type="bean"
+			class="com.ictti.library.business.entity.SubCategory" javascript="SubCategory" />
+
+	</dwr:configuration>
+	<dwr:controller id="dwrController" debug="true" />
+
+	<bean id="idSearchService" class="com.ictti.library.business.service.SearchService">
+		<property name="myBookListDao" ref="idBookListDao" />
+		<property name="myCategoryDao" ref="idCategoryDao" />
+
+	</bean>
+	<!-- For Reserve -->
+	<bean id="idReserveService" class="com.ictti.library.business.service.ReserveService">
+		<property name="myReserveDao" ref="idBookReserveDao" />
+		<property name="myCallNumberDao" ref="idCallNumberDao" />
+		<property name="myBookOnLoanDao" ref="idBookOnLoanDao" />
+		<property name="myViewBookListDao" ref="idViewBookListDao" />
+		<property name="myUserDao" ref="idUserDao" />
+	</bean>
+
+	<!-- For View Rent -->
+	<bean id="idViewRentService" class="com.ictti.library.business.service.ViewRentService">
+		<property name="myReserveDao" ref="idBookReserveDao" />
+		<property name="myCallNumberDao" ref="idCallNumberDao" />
+		<property name="myViewBookListDao" ref="idViewBookListDao" />
+		<property name="myBookOnLoanDao" ref="idBookOnLoanDao" />
+		<property name="myViewRentDao" ref="idViewRentDao" />
+	</bean>
+
+	<!-- For Renew Book -->
+	<bean id="idRenewService" class="com.ictti.library.business.service.RenewService">
+		<property name="myViewRentDao" ref="idViewRentDao" />
+		<property name="myReserveDao" ref="idBookReserveDao" />
+		<property name="myBookOnLoanDao" ref="idBookOnLoanDao" />
+		<property name="myCallDao" ref="idCallNumberDao" />
+	</bean>
+
+	<!-- For ReserveCancel Book -->
+	<bean id="idViewReserveBookService"
+		class="com.ictti.library.business.service.ViewReserveBookService">
+		<property name="myViewReserveBookDao" ref="idViewReserveBookDao" />
+		<property name="myBookReserveDao" ref="idBookReserveDao" />
+		<property name="myCallNumberDao" ref="idCallNumberDao" />
+	</bean>
+	<!--For Admin Login Page -->
+	<bean id="idAdminService" class="com.ictti.library.business.service.AdminService">
+		<property name="myAdminDao" ref="idAdminDao" />
+	</bean>
+	<bean id="idPubService" class="com.ictti.library.business.service.PublisherService">
+		<property name="myPublisherDao" ref="idPublisherDao" />
+	</bean>
+
+
+
+	<!-- For Amazon Search -->
+	<bean id="idAmazonService" class="com.ictti.library.business.service.AmazonService">
+		<property name="myCategoryDao" ref="idCategoryDao" />
+		<property name="mySubCategoryDao" ref="idSubCategoryDao" />
+		<property name="myBookListDao" ref="idBookListDao" />
+		<property name="myPhotoDao" ref="idPhotoDao" />
+		<property name="myPublisherDao" ref="idPublisherDao" />
+		<property name="myCallNumberDao" ref="idCallNumberDao" />
+		<property name="myAuthorDao" ref="idAuthorDao" />
+		<property name="myBookAuthorDao" ref="idBookAuthorDao" />
+		<property name="myAccessionCodeDao" ref="idAccessionDao" />
+		<dwr:remote javascript="AjaxSearchSubcategory">
+			<dwr:include method="getBySubcategory" />
+			<dwr:include method="getByCategorySubcategory" />
+		</dwr:remote>
+	</bean>
+
+	<!-- For Check In -->
+	<bean id="idCheckInService" class="com.ictti.library.business.service.CheckInService">
+		<property name="myCallNumberDao" ref="idCallNumberDao" />
+		<property name="myBookOnLoanDao" ref="idBookOnLoanDao" />
+		<property name="myViewRentDao" ref="idViewRentDao" />
+		<property name="myUserDao" ref="idUserDao" />
+	</bean>
+
+	<!-- For Book Update -->
+	<bean id="idBookUpdateService" class="com.ictti.library.business.service.BookUpdateService">
+		<property name="myViewDetailBookDao" ref="idViewBookDetailDao" />
+		<property name="myBookListDao" ref="idBookListDao" />
+		<property name="myCallNumberDao" ref="idCallNumberDao" />
+		<property name="myAuthorDao" ref="idAuthorDao" />
+		<property name="myAccessionCodeDao" ref="idAccessionDao" />
+	</bean>
+	<!-- For Book Delete -->
+	<bean id="idBookDeleteService" class="com.ictti.library.business.service.BookDeleteService">
+		<property name="myViewDetailBookDao" ref="idViewBookDetailDao" />
+		<property name="myBookListDao" ref="idBookListDao" />
+		<property name="myCallNumberDao" ref="idCallNumberDao" />
+	</bean>
+
+	<!-- For Check Out -->
+	<bean id="idCheckOutService" class="com.ictti.library.business.service.CheckOutService">
+		<property name="myBookReserveDao" ref="idBookReserveDao" />
+		<property name="myCallNumberDao" ref="idCallNumberDao" />
+		<property name="myUserTypeDao" ref="idUserTypeDao" />
+		<property name="myUserDao" ref="idUserDao" />
+		<property name="myBookOnLoanDao" ref="idBookOnLoanDao" />
+		<property name="myBookListDao" ref="idBookListDao" />
+		<property name="myViewDetailBookDao" ref="idViewDetailBookDao" />
+	</bean>
+	<!-- For View Recall By Email -->
+	<bean id="idRecallService" class="com.ictti.library.business.service.RecallService">
+		<property name="myRecallDao" ref="idRecallDao" />
+	</bean>
+	<!--for ViewMemberInfoService -->
+	<bean id="idViewMemberInfoService"
+		class="com.ictti.library.business.service.AdminViewMemberInfoService">
+		<property name="myUserDao" ref="idUserDao" />
+		<property name="myUserTypeDao" ref="idUserTypeDao" />
+		<property name="myViewMemberInfoDao" ref="idViewMemberInfoDao" />
+	</bean>
+
+	<!-- Admin View Book rent -->
+
+	<bean id="idViewBookService"
+		class="com.ictti.library.business.service.AdminViewRentBookService">
+		<property name="myAdminViewBookDao" ref="idViewBookDao" />
+		<property name="myCategoryDao" ref="idCategoryDao" />
+
+	</bean>
+
+
+	<!-- For View Book status -->
+	<bean id="idBookStatusService" class="com.ictti.library.business.service.BookStatusService">
+		<property name="myViewBookStatusDao" ref="idBookStatusDao" />
+	</bean>
+
+
+
+
+
+
+
+
+</beans>
+

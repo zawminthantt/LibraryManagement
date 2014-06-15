@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.ictti.library.business.entity">
+	<class name="ViewMostRentBook" table="view_most_rent_book">
+		<meta attribute="sync-DAO">false</meta>
+		<id name="id" type="integer" column="book_id">
+			<generator class="identity" />
+		</id>
+
+		<property name="isbn" column="isbn" type="string" not-null="false"
+			length="50" />
+		<property name="title" column="title" type="string" not-null="false"
+			length="100" />
+		<property name="callNumberId" column="callnumber_id" type="integer"
+			not-null="false" length="10" />
+		<property name="categoryId" column="category_id" type="integer"
+			not-null="false" length="10" />
+		<property name="categoryName" column="category_name" type="string"
+			not-null="false" length="100" />
+		<property name="subCategoryName" column="subcategory_name"
+			type="string" not-null="false" length="100" />
+		<property name="authorName" column="author_name" type="string"
+			not-null="false" length="50" />
+		<property name="pubDate" column="published_date" type="date"
+			not-null="false" />
+		<property name="registerDate" column="register_date" type="date"
+			not-null="false" />
+		<property name="publisherName" column="publisher_name" type="string"
+			not-null="false" length="100" />
+		<property name="rentTimes" column="rented_times" type="integer"
+			not-null="false" length="10" />
+	</class>
+</hibernate-mapping>

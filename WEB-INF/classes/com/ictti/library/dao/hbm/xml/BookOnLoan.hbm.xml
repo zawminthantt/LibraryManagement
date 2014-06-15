@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ictti.library.business.entity">
+	<class
+		name="BookOnLoan"
+		table="book_on_loan"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="id"
+			type="integer"
+			column="book_loan_id"
+		>
+			<generator class="identity"/>
+		</id>
+
+		<property
+			name="issueDate"
+			column="issue_date"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="returnDate"
+			column="return_date"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="dueDate"
+			column="due_date"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="lateFees"
+			column="late_fees"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="loanStatus"
+			column="loan_status"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<many-to-one
+			name="callnumber"
+			column="callnumber_id"
+			class="CallNumber"
+			not-null="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="user"
+			column="user_id"
+			class="User"
+			not-null="true"
+		>
+		</many-to-one>
+	
+
+		<set name="emailLogs" inverse="true">
+			<key column="book_loan_id"/>
+			<one-to-many class="EmailLog"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

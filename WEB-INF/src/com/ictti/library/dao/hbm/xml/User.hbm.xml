@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ictti.library.business.entity">
+	<class
+		name="User"
+		table="user"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="id"
+			type="integer"
+			column="user_id"
+		>
+			<generator class="identity"/>
+		</id>
+
+		<property
+			name="userLoginName"
+			column="user_login_name"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="userName"
+			column="user_name"
+			type="string"
+			not-null="false"
+			length="30"
+		/>
+		<property
+			name="nrcNo"
+			column="nrc_no"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+		<!-- please tell Joe Hudson that the type 'TINYTEXT' could not be resolved.. defaulting to java.lang.String -->
+		<property
+			name="gender"
+			column="gender"
+			type="java.lang.String"
+			not-null="false"
+			length="255"
+		/>
+		<property
+			name="userPassword"
+			column="user_password"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="userAddress"
+			column="user_address"
+			type="string"
+			not-null="false"
+			length="100"
+		/>
+		<property
+			name="userPhoneNo"
+			column="user_phone_no"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="userEmail"
+			column="user_email"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="expireDate"
+			column="expire_date"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="issueDate"
+			column="issue_date"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="userStatus"
+			column="user_status"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="loanCount"
+			column="loan_count"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<many-to-one
+			name="userType"
+			column="user_type_id"
+			class="UserType"
+			not-null="false"
+		>
+		</many-to-one>
+	
+
+		<set name="emailLogs" inverse="true">
+			<key column="user_id"/>
+			<one-to-many class="EmailLog"/>
+		</set>
+
+		<set name="bookOnLoans" inverse="true">
+			<key column="user_id"/>
+			<one-to-many class="BookOnLoan"/>
+		</set>
+
+		<set name="bookReserves" inverse="true">
+			<key column="user_id"/>
+			<one-to-many class="BookReserve"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

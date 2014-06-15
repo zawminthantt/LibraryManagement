@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ictti.library.business.entity">
+	<class
+		name="BookReserve"
+		table="book_reserve"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="id"
+			type="integer"
+			column="book_reserve_id"
+		>
+			<generator class="identity"/>
+		</id>
+
+		<property
+			name="reserveDate"
+			column="reserve_date"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="reserveStatus"
+			column="reserve_status"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="availDate"
+			column="avail_date"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<many-to-one
+			name="callnumber"
+			column="callnumber_id"
+			class="CallNumber"
+			not-null="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="user"
+			column="user_id"
+			class="User"
+			not-null="false"
+		>
+		</many-to-one>
+
+
+	</class>	
+</hibernate-mapping>

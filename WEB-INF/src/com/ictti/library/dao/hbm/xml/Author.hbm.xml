@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ictti.library.business.entity">
+	<class
+		name="Author"
+		table="author"
+		lazy="false"		
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="id"
+			type="integer"
+			column="author_id"
+		>
+			<generator class="identity"/>
+		</id>
+
+		<property
+			name="authorName"
+			column="author_name"
+			type="string"
+			not-null="false"
+			length="100"
+		/>
+		<property
+			name="authorInitName"
+			column="author_init_name"
+			type="string"
+			not-null="false"
+			length="10"
+		/>
+	
+
+		<set name="bookAuthors" inverse="true" lazy="false">
+			<key column="author_id"/>
+			<one-to-many class="BookAuthor"/>
+		</set>
+
+		<set name="callNumbers" inverse="true" lazy="false">
+			<key column="author_id"/>
+			<one-to-many class="CallNumber"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

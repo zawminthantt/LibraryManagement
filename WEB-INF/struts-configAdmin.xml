@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration
+1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+	<form-beans>
+		<!-- For Admin Login -->
+		<form-bean name="adminLoginFormBean"
+			type="com.ictti.library.presentation.form.AdminForm">
+		</form-bean>
+
+		<!-- For Admin Register -->
+		<form-bean name="adminRegisterFormBean"
+			type="com.ictti.library.presentation.form.AdminForm">
+		</form-bean>
+
+		<!-- For Admin Search -->
+		<form-bean name="AutoFormBean"
+			type="com.ictti.library.presentation.form.SearchDetailForm">
+		</form-bean>
+
+
+
+		<!-- For Amazon Search -->
+		<form-bean name="AmazonFormBean"
+			type="com.ictti.library.presentation.form.AmazonBeanForm">
+		</form-bean>
+
+		<!-- For CheckIn Form -->
+		<form-bean name="CheckInFormBean"
+			type="com.ictti.library.presentation.form.CheckOutForm">
+		</form-bean>
+
+		<!-- For BookUpdate Form -->
+		<form-bean name="BookUpdateFormBean"
+			type="com.ictti.library.presentation.form.CheckOutForm">
+		</form-bean>
+
+		<!-- For BookDelete Form -->
+		<form-bean name="BookDeleteFormBean"
+			type="com.ictti.library.presentation.form.CheckOutForm">
+		</form-bean>
+
+		<!-- For CheckOut Form -->
+		<form-bean name="CheckOutFormBean"
+			type="com.ictti.library.presentation.form.CheckOutForm">
+		</form-bean>
+
+		<!-- For View Recall By Email -->
+		<form-bean name="RecallFormBean"
+			type="com.ictti.library.presentation.form.RecallForm">
+		</form-bean>
+
+		<!-- Admin View MemberInfo -->
+		<form-bean name="AdminViewMemberFormBean"
+			type="com.ictti.library.presentation.form.AdminViewMemberInfoForm">
+		</form-bean>
+
+		<!-- Admin View Reservation -->
+		<form-bean name="AdminViewReserveFormBean"
+			type="com.ictti.library.presentation.form.AdminViewReservationForm">
+		</form-bean>
+		<!-- For View Book Status -->
+		<form-bean name="BookStatusFormBean"
+			type="com.ictti.library.presentation.form.BookStatusForm">
+		</form-bean>
+
+		<!-- Admin View Book Info -->
+		<form-bean name="AdminViewBookFormBean"
+			type="com.ictti.library.presentation.form.AdminViewBookForm">
+		</form-bean>
+
+
+
+
+
+
+	</form-beans>
+
+	<action-mappings>
+		<!-- for Admin Login -->
+		<action path="/adminLoginPath" name="adminLoginFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="true" input="/admin_login.jsp">
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+			<forward name="gotoHome" path="/WEB-INF/jsp/admin_home.jsp" />
+
+		</action>
+		<!-- for Admin Logout -->
+		<action path="/adminLogoutPath" name="adminLoginFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" input="/admin_login.jsp">
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+		</action>
+		<action path="/adminRegisterPathFirst" name="adminRegisterFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="false">
+			<forward name="gotoAdminRegister" path="/WEB-INF/jsp/admin_book_register.jsp" />
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+
+		</action>
+
+		<action path="/adminRegisterPath" name="adminRegisterFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="true" input="/WEB-INF/jsp/admin_book_register.jsp">
+			<forward name="gotoAdminRegister" path="/WEB-INF/jsp/admin_book_register.jsp" />
+			<forward name="gotoSaveBook" path="/WEB-INF/jsp/admin_home.jsp" />
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+		</action>
+		<action path="/adminBookSearch" name="AutoFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="gotoAuto" path="/WEB-INF/jsp/admin_book_search.jsp" />
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+			<forward name="gotoTitle" path="/WEB-INF/jsp/admin_book_search_detail_000.jsp" />
+			<forward name="gotoAuthor" path="/WEB-INF/jsp/admin_book_search_detail_000.jsp" />
+			<forward name="gotoDisplay" path="/WEB-INF/jsp/admin_book_search_detail_001.jsp" />
+			<forward name="gotoSearch" path="/WEB-INF/jsp/admin_book_search_detail_000.jsp" />
+
+
+		</action>
+		<action path="/adminSearchDetailPath" name="AutoFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="false">
+			<forward name="gotoDisplay" path="/WEB-INF/jsp/admin_book_search_detail_001.jsp" />
+			<forward name="gotoBack" path="/WEB-INF/jsp/admin_book_search_detail_000.jsp" />
+
+
+		</action>
+		<!-- For publisher -->
+		<action path="/publisherPathFirst" name="adminRegisterFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="false">
+			<forward name="gotoPublisher" path="/WEB-INF/jsp/publisher.jsp" />
+		</action>
+		<action path="/adminPublisherPath" name="adminRegisterFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="false" input="/WEB-INF/jsp/publisher.jsp">
+			<forward name="gotoPublisher" path="/WEB-INF/jsp/publisher.jsp" />
+			<forward name="gotoAdminRegister" path="/WEB-INF/jsp/admin_book_register.jsp" />
+		</action>
+
+
+
+		<!-- For Amazon Search -->
+		<action path="/amazonPath" name="AmazonFormBean" scope="session"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="gotoAmazon" path="/WEB-INF/jsp/amazon_register.jsp" />
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+			<forward name="gotoAmazonSuccess" path="/WEB-INF/jsp/amazon_register_success.jsp" />
+
+		</action>
+
+		<!-- For Check in Form -->
+		<action path="/checkinPath" name="CheckInFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="false">
+			<forward name="gotoCheckIn" path="/WEB-INF/jsp/admin_checkin_000.jsp" />
+			<forward name="gotoCheckInDetail" path="/WEB-INF/jsp/admin_checkin_001.jsp" />
+			<forward name="gotoCheckInSuccess" path="/WEB-INF/jsp/admin_checkin_002.jsp" />
+			<forward name="gotoHome" path="/WEB-INF/jsp/admin_home.jsp" />
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+		</action>
+		<action path="/checkinPathFirst" name="CheckInFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="true" input="/WEB-INF/jsp/admin_checkin_000.jsp">
+			<forward name="gotoCheckIn" path="/WEB-INF/jsp/admin_checkin_000.jsp" />
+			<forward name="gotoCheckInDetail" path="/WEB-INF/jsp/admin_checkin_001.jsp" />
+			<forward name="gotoHome" path="/WEB-INF/jsp/admin_home.jsp" />
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+		</action>
+
+		<!-- For BookUpdate Form -->
+		<action path="/bookupdatePathFirst" name="BookUpdateFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="false">
+			<forward name="gotoBookUpdateSearch" path="/WEB-INF/jsp/admin_book_update.jsp" />
+			<forward name="gotoBookUpdate" path="/WEB-INF/jsp/admin_book_update_000.jsp" />
+			<forward name="gotoBookUpdateConfirm" path="/WEB-INF/jsp/admin_book_update_001.jsp" />
+			<forward name="gotoBookUpdateSuccess" path="/WEB-INF/jsp/admin_book_update_002.jsp" />
+			<forward name="gotoHome" path="/WEB-INF/jsp/admin_home.jsp" />
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+		</action>
+		<action path="/bookupdatePath" name="BookUpdateFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="true" input="/WEB-INF/jsp/admin_book_update.jsp">
+			<forward name="gotoUpdate" path="/WEB-INF/jsp/admin_book_update.jsp" />
+			<forward name="gotoBookUpdate" path="/WEB-INF/jsp/admin_book_update_000.jsp" />
+			<forward name="gotoBookUpdateConfirm" path="/WEB-INF/jsp/admin_book_update_001.jsp" />
+			<forward name="gotoBookUpdateSuccess" path="/WEB-INF/jsp/admin_book_update_002.jsp" />
+			<forward name="gotoHome" path="/WEB-INF/jsp/admin_home.jsp" />
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+		</action>
+
+		<!-- For BookDelete Form -->
+		<action path="/bookdeletePathFirst" name="BookDeleteFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="false">
+			<forward name="gotoBookDeleteSearch" path="/WEB-INF/jsp/admin_book_delete.jsp" />
+			<forward name="gotoBookDelete" path="/WEB-INF/jsp/admin_book_delete_000.jsp" />
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+		</action>
+		<action path="/bookdeletePath" name="BookDeleteFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="true" input="/WEB-INF/jsp/admin_book_delete.jsp">
+			<forward name="gotoBookDelete" path="/WEB-INF/jsp/admin_book_delete_000.jsp" />
+			<forward name="gotoBookDeleteConfirm" path="/WEB-INF/jsp/admin_book_delete_001.jsp" />
+			<forward name="gotoBookDeleteSuccess" path="/WEB-INF/jsp/admin_book_delete_002.jsp" />
+			<forward name="gotoHome" path="/WEB-INF/jsp/admin_home.jsp" />
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+		</action>
+
+		<!-- For Check Out Form -->
+		<action path="/checkoutPathFirst" name="CheckOutFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="false">
+			<forward name="gotoCheckOut" path="/WEB-INF/jsp/admin_checkout_000.jsp" />
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+		</action>
+
+		<action path="/checkoutPath" name="CheckOutFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="true" input="/WEB-INF/jsp/admin_checkout_000.jsp">
+			<forward name="gotoCheckOut" path="/WEB-INF/jsp/admin_checkout_000.jsp" />
+			<forward name="gotoCheckOutSuccess" path="/WEB-INF/jsp/admin_checkout_001.jsp" />
+			<forward name="gotoHome" path="/WEB-INF/jsp/admin_home.jsp" />
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+		</action>
+		<!-- For Recall By Email (akp) -->
+
+
+		<action path="/adminrecall"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="RecallFormBean"
+			scope="session" validate="true">
+			<set-property key="mail_smtp" value="192.168.48.13" />
+			<set-property key="mail_from" value="admin@ictti.site" />
+			<set-property key="mail_fromname" value="ICTTI" />
+			<set-property key="mail_mailfile"
+				value="/root/advworkspace/team4lib/mailContent/mailcontent.txt" />
+			<forward name="gotoRecall" path="/WEB-INF/jsp/admin_recall.jsp" />
+			<forward name="gotoRecall1" path="/WEB-INF/jsp/admin_recall_1.jsp" />
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+		</action>
+
+
+		<!-- Admin View Member -->
+		<action path="/adminViewMemberInfoPath" name="AdminViewMemberFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="true" input="/WEB-INF/jsp/admin_view_member_info.jsp">
+			<forward name="gotoMember" path="/WEB-INF/jsp/admin_view_member_info.jsp" />
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+			<forward name="gotoTeacherMember" path="/WEB-INF/jsp/view_member_info.jsp" />
+		</action>
+
+		<!-- For Admin View Reservation -->
+		<action path="/adminViewReservationPath" name="AdminViewReserveFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="true" input="/WEB-INF/jsp/admin_view_reservation.jsp">
+			<forward name="gotoCalendar" path="/WEB-INF/jsp/admin_view_reservation.jsp" />
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+		</action>
+
+		<!-- For View Book Status -->
+		<action path="/viewbookstatusFirst" name="BookStatusFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="false">
+			<forward name="gotoSearch" path="/WEB-INF/jsp/view_book_status.jsp" />
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+		</action>
+
+		<action path="/viewbookstatus" name="BookStatusFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			input="/WEB-INF/jsp/view_book_status.jsp">
+			<forward name="gotoSearch" path="/WEB-INF/jsp/view_book_status.jsp" />
+
+		</action>
+
+		<!-- Admin View Member -->
+		<action path="/adminViewMemberInfoPath" name="AdminViewMemberFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="true" input="/WEB-INF/jsp/admin_view_member_info.jsp">
+			<forward name="gotoMember" path="/WEB-INF/jsp/admin_view_member_info.jsp" />
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+		</action>
+		<!-- Admin View Member -->
+		<action path="/adminViewRentMemberPath" name="AdminViewMemberFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="true" input="/WEB-INF/jsp/admin_view_rent_member.jsp">
+			<forward name="gotoHome" path="/WEB-INF/jsp/admin_home.jsp" />
+			<forward name="gotoRentMember" path="/WEB-INF/jsp/admin_view_rent_member.jsp" />
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+		</action>
+
+		<!-- Admin View Book -->
+		<action path="/adminViewRentBookPath" name="AdminViewBookFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="false" input="/WEB-INF/jsp/admin_view_rent_book.jsp">
+			<forward name="gotoBookRent" path="/WEB-INF/jsp/admin_view_rent_book.jsp" />
+			<forward name="gotoLogin" path="/admin_login.jsp" />
+		</action>
+
+
+
+
+
+
+	</action-mappings>
+</struts-config>

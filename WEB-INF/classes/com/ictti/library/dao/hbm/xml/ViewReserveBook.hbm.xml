@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ictti.library.business.entity">
+	<class
+		name="ViewReserveBook"
+		table="view_reserve_book"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		
+		<id
+			name="id"
+			type="integer"
+			column="view_id"
+		>
+			<generator class="identity"/>
+		</id>
+		
+		<property
+			name="userId"
+			column="user_id"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		
+		<property
+			name="userName"
+			column="member_name"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="email"
+			column="member_email"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="userType"
+			column="member_type_name"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="isbn"
+			column="ISBN"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="authorName"
+			column="author_name"
+			type="string"
+			not-null="false"
+			length="100"
+		/>
+			<property
+			name="callNumberId"
+			column="callnumber_id"
+			type="int"
+			not-null="false"
+			length="10"
+		/>
+			<property
+			name="callNumberCode"
+			column="call_number_code"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="title"
+			column="title"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+
+		<property
+			name="callStatus"
+			column="callStatus"
+			type="int"
+			not-null="false"
+			length="5"
+		/>
+		<property
+			name="reserveStatus"
+			column="reserveStatus"
+			type="int"
+			not-null="false"
+			length="5"
+		/>
+			<property
+			name="dueDate"
+			column="due_date"
+			type="date"
+			not-null="false"
+		/>
+			<property
+			name="reserveDate"
+			column="reserve_date"
+			type="date"
+			not-null="false"
+		/>
+		<property
+			name="availableDate"
+			column="available_date"
+			type="date"
+			not-null="false"
+		/>
+
+
+	</class>	
+</hibernate-mapping>

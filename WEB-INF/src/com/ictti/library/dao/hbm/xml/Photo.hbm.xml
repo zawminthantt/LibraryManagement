@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ictti.library.business.entity">
+	<class
+		name="Photo"
+		table="photo"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="id"
+			type="integer"
+			column="photo_id"
+		>
+			<generator class="identity"/>
+		</id>
+
+		<property
+			name="photoName"
+			column="photo_name"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="photoType"
+			column="photo_type"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="photoData"
+			column="photo_data"
+			type="blob"
+			not-null="false"
+		/>
+		<property
+			name="photoSize"
+			column="photo_size"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<many-to-one
+			name="book"
+			column="book_id"
+			class="BookList"
+			not-null="false"
+		>
+		</many-to-one>
+
+
+	</class>	
+</hibernate-mapping>

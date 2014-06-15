@@ -1,0 +1,211 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<!-- For Login Page -->
+	<bean name="/loginPath" class="com.ictti.library.presentation.action.LoginAction">
+		<property name="myUserService" ref="idUserService" />
+	</bean>
+	<!-- For Logout Page -->
+	<bean name="/logoutPath" class="com.ictti.library.presentation.action.LogoutAction">
+	</bean>
+	<!-- For Registration Page -->
+	<bean name="/registerPathFirst"
+		class="com.ictti.library.presentation.action.RegistrationAction">
+		<property name="myRegisterService" ref="idRegisterService" />
+	</bean>
+	<bean name="/registerPath"
+		class="com.ictti.library.presentation.action.RegistrationAction">
+		<property name="myRegisterService" ref="idRegisterService" />
+	</bean>
+	<!-- For Update Profile Page -->
+	<bean name="/updatePathFirst"
+		class="com.ictti.library.presentation.action.UpdateProfileAction">
+		<property name="myUpdateProfileService" ref="idUpdateService" />
+	</bean>
+	<bean name="/updatePath"
+		class="com.ictti.library.presentation.action.UpdateProfileAction">
+		<property name="myUpdateProfileService" ref="idUpdateService" />
+	</bean>
+	<!-- For Inner Search -->
+	<bean name="/autoComplementPath"
+		class="com.ictti.library.presentation.action.SearchDetailAction">
+		<property name="myCategoryService" ref="idAutoService" />
+	</bean>
+	<bean name="/searchDetailPath"
+		class="com.ictti.library.presentation.action.DetailSearchAction">
+		<property name="myCategoryService" ref="idAutoService" />
+
+	</bean>
+	<!-- For Outer Search -->
+	<bean name="/searchPath" class="com.ictti.library.presentation.action.SearchAction">
+		<property name="mySearchService" ref="idSearchService" />
+
+	</bean>
+	<!-- For Reserve -->
+	<bean name="/reservationPath" class="com.ictti.library.presentation.action.ReserveAction">
+		<property name="myReserveService" ref="idReserveService" />
+	</bean>
+	<bean name="/reserveDetailPath" class="com.ictti.library.presentation.action.ReserveAction">
+		<property name="myReserveService" ref="idReserveService" />
+	</bean>
+
+	<!-- For View Rent History -->
+	<bean name="/viewPath" class="com.ictti.library.presentation.action.ViewRentAction">
+		<property name="myViewRentService" ref="idViewRentService" />
+	</bean>
+
+	<!-- For Renew Book -->
+	<bean name="/renewPath" class="com.ictti.library.presentation.action.RenewAction">
+		<property name="myRenewService" ref="idRenewService" />
+	</bean>
+
+	<!-- For Reserve Cancel Book -->
+	<bean name="/viewReservePath"
+		class="com.ictti.library.presentation.action.ViewReserveBookAction">
+		<property name="myViewReserveBookService" ref="idViewReserveBookService" />
+	</bean>
+	<bean name="/cancelReservePath"
+		class="com.ictti.library.presentation.action.ViewReserveBookAction">
+		<property name="myViewReserveBookService" ref="idViewReserveBookService" />
+	</bean>
+
+
+	<!-- For Admin Login page -->
+	<bean name="/adminLoginPath"
+		class="com.ictti.library.presentation.action.AdminLoginAction">
+		<property name="myAdminService" ref="idAdminService" />
+	</bean>
+
+	<!-- For Admin Logout Page -->
+	<bean name="/adminLogoutPath"
+		class="com.ictti.library.presentation.action.AdminLogoutAction">
+	</bean>
+
+	<!-- For Admin Book Register For FirstLoad Registration -->
+	<bean name="/adminRegisterPathFirst"
+		class="com.ictti.library.presentation.action.AdminBookRegisterAction">
+		<property name="myAdminService" ref="idBookRegisterService" />
+	</bean>
+
+
+	<!-- For Admin Book Register -->
+	<bean name="/adminRegisterPath"
+		class="com.ictti.library.presentation.action.AdminBookRegisterAction">
+		<property name="myAdminService" ref="idBookRegisterService" />
+	</bean>
+
+	<bean name="/adminBookSearch"
+		class="com.ictti.library.presentation.action.SearchDetailAction">
+		<property name="myCategoryService" ref="idAutoService" />
+	</bean>
+
+	<bean name="/adminSearchDetailPath"
+		class="com.ictti.library.presentation.action.DetailSearchAction">
+		<property name="myCategoryService" ref="idAutoService" />
+
+	</bean>
+	<!-- for new publisher -->
+	<bean name="/publisherPathFirst" class="com.ictti.library.presentation.action.PublisherAction">
+		<property name="myPublisherService" ref="idPubService" />
+
+	</bean>
+
+	<bean name="/adminPublisherPath" class="com.ictti.library.presentation.action.PublisherAction">
+		<property name="myPublisherService" ref="idPubService" />
+		<property name="myAdminService" ref="idBookRegisterService" />
+	</bean>
+
+
+	<!-- For Amazon -->
+	<bean name="/amazonPath" class="com.ictti.library.presentation.action.AmazonAction">
+		<property name="myAmazonService" ref="idAmazonService" />
+	</bean>
+
+	<!-- For Check In -->
+
+	<bean name="/checkinPathFirst" class="com.ictti.library.presentation.action.CheckInAction">
+		<property name="myCheckInService" ref="idCheckInService" />
+	</bean>
+	<bean name="/checkinPath" class="com.ictti.library.presentation.action.CheckInAction">
+		<property name="myCheckInService" ref="idCheckInService" />
+	</bean>
+	<!-- For Book Update -->
+	<bean name="/bookupdatePathFirst"
+		class="com.ictti.library.presentation.action.BookUpdateAction">
+		<property name="myBookUpdateService" ref="idBookUpdateService" />
+	</bean>
+	<bean name="/bookupdatePath"
+		class="com.ictti.library.presentation.action.BookUpdateAction">
+		<property name="myBookUpdateService" ref="idBookUpdateService" />
+	</bean>
+
+	<!-- For Book Delete -->
+	<bean name="/bookdeletePathFirst"
+		class="com.ictti.library.presentation.action.BookDeleteAction">
+		<property name="myBookDeleteService" ref="idBookDeleteService" />
+	</bean>
+	<bean name="/bookdeletePath"
+		class="com.ictti.library.presentation.action.BookDeleteAction">
+		<property name="myBookDeleteService" ref="idBookDeleteService" />
+	</bean>
+
+
+	<!-- For Check out -->
+	<bean name="/checkoutPathFirst" class="com.ictti.library.presentation.action.CheckOutAction">
+		<property name="myCheckOutService" ref="idCheckOutService" />
+	</bean>
+	<bean name="/checkoutPath" class="com.ictti.library.presentation.action.CheckOutAction">
+		<property name="myCheckOutService" ref="idCheckOutService" />
+	</bean>
+
+	<!-- For View Recall By Email -->
+
+	<bean name="/adminrecall" class="com.ictti.library.presentation.action.RecallAction">
+		<property name="myRecallService" ref="idRecallService" />
+	</bean>
+
+
+
+	<!-- Admin View Reservation -->
+
+	<bean name="/adminViewReservationPath"
+		class="com.ictti.library.presentation.action.AdminViewReservationAction">
+		<property name="myViewReserveBookService" ref="idViewReserveBookService" />
+	</bean>
+
+	<!-- For View book status -->
+
+	<bean name="/viewbookstatusFirst"
+		class="com.ictti.library.presentation.action.BookStatusAction">
+		<property name="myBookStatusService" ref="idBookStatusService" />
+	</bean>
+	<bean name="/viewbookstatus"
+		class="com.ictti.library.presentation.action.BookStatusAction">
+		<property name="myBookStatusService" ref="idBookStatusService" />
+	</bean>
+
+	<!-- Admin View Member Info -->
+	<bean name="/adminViewMemberInfoPath"
+		class="com.ictti.library.presentation.action.AdminViewMemberInfoAction">
+		<property name="myAdminViewMemberService" ref="idViewMemberInfoService" />
+	</bean>
+
+	<!-- Admin View Rent Member Info -->
+	<bean name="/adminViewRentMemberPath"
+		class="com.ictti.library.presentation.action.AdminViewRentMemberAction">
+		<property name="myAdminViewMemberService" ref="idViewMemberInfoService" />
+	</bean>
+
+
+	<!-- Admin View Rent Book Info -->
+	<bean name="/adminViewRentBookPath"
+		class="com.ictti.library.presentation.action.AdminViewRentBookAction">
+		<property name="myAdminViewRentBookService" ref="idViewBookService" />
+	</bean>
+
+
+
+
+
+</beans>

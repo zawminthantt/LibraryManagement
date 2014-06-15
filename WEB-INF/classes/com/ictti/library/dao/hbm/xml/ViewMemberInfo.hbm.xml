@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.ictti.library.business.entity">
+	<class name="ViewMemberInfo" table="view_member_info">
+		<meta attribute="sync-DAO">false</meta>
+		<id name="id" type="integer" column="user_id">
+			<generator class="identity" />
+		</id>
+		
+		<property name="userName" column="user_name" type="string"
+			not-null="false" length="50" />
+		<property name="userTypeId" column="user_type_id" type="integer"
+			not-null="false" length="10" />
+		<property name="userStatus" column="user_status" type="integer"
+			not-null="false" length="10" />
+		<property name="userTypeName" column="user_type_name" type="string"
+			not-null="false" length="50" />
+		<property name="userAddress" column="user_address" type="string"
+			not-null="false" length="100" />
+		<property name="phoneNumber" column="phone" type="string"
+			not-null="false" length="50" />
+		<property name="userEmail" column="email" type="string"
+			not-null="false" length="50" />
+		<property name="issueDate" column="issue_date" type="date"
+			not-null="false" />
+		<property name="loanDate" column="loan_date" type="date"
+			not-null="false" />
+		<property name="expireDate" column="expire_date" type="date"
+			not-null="false" />
+		<property name="rentCount" column="rentcount" type="integer"
+			not-null="false" length="10" />
+	</class>
+</hibernate-mapping>

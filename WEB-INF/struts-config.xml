@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration
+1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+	<!-- Global Forward Definitions -->
+	<global-forwards>
+		<!-- Default forward to "Welcome" action -->
+		<!-- Demonstrates using index.jsp to forward -->
+		<forward name="welcome" path="/Welcome.do" />
+	</global-forwards>
+	<!--Action Mapping Definitions -->
+	<action-mappings>
+		<!-- Default "Welcome" action -->
+		<!-- Forwards to Welcome.jsp -->
+		<action path="/Welcome" forward="/WEB-INF/jsp/login.jsp" />
+	</action-mappings>
+	<!-- For Message Resources Properties -->
+	<message-resources parameter="MessageResources" />
+
+
+	<!-- Plugin to load Action class by way of Spring -->
+	<plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+		<set-property property="contextConfigLocation"
+			value="/WEB-INF/action-servletAction.xml,/WEB-INF/action-servlet.xml,/WEB-INF/action-servletService.xml" />
+	</plug-in>
+	<!-- Plugin For Validation -->
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/org/apache/struts/validator/validator-rules.xml,
+               /WEB-INF/validation.xml" />
+	</plug-in>
+</struts-config>
+	
+
+	
+        

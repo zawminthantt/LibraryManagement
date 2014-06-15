@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ictti.library.business.entity">
+	<class
+		name="CallNumber"
+		table="call_number"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="id"
+			type="integer"
+			column="callnumber_id"
+		>
+			<generator class="identity"/>
+		</id>
+
+		<property
+			name="callNumberCode"
+			column="call_number_code"
+			type="string"
+			not-null="true"
+			length="50"
+		/>
+		<property
+			name="issuseStatus"
+			column="issuse_status"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="accessionNo"
+			column="accession_no"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<many-to-one
+			name="book"
+			column="book_id"
+			class="BookList"
+			not-null="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="author"
+			column="author_id"
+			class="Author"
+			not-null="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="accession"
+			column="accession_id"
+			class="AccessionCode"
+			not-null="false"
+		>
+		</many-to-one>
+	
+
+		<set name="bookOnLoans" inverse="true">
+			<key column="callnumber_id"/>
+			<one-to-many class="BookOnLoan"/>
+		</set>
+
+		<set name="bookReserves" inverse="true">
+			<key column="callnumber_id"/>
+			<one-to-many class="BookReserve"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

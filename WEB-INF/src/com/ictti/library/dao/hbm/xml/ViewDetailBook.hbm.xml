@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ictti.library.business.entity">
+	<class
+		name="ViewDetailBook"
+		table="view_detail_book"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="id"
+			type="integer"
+			column="callnumber_id"
+			
+		>
+			<generator class="identity"/>
+		</id>
+
+		<property
+			name="status"
+			column="status"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		
+		<property
+			name="bookId"
+			column="book_id"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+<property
+			name="callNumberCode"
+			column="call_number_code"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+
+
+		<property
+			name="title"
+			column="title"
+			type="string"
+			not-null="false"
+			length="100"
+		/>
+		
+		<property
+			name="isbn"
+			column="ISBN"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="edition"
+			column="edition"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="price"
+			column="price"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+			<property
+			name="year"
+			column="year"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+			<property
+			name="noofcopies"
+			column="noofcopies"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="remark"
+			column="remark"
+			type="string"
+			not-null="false"
+			length="100"
+		/>
+			<property
+			name="pubid"
+			column="pub_id"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+			<property
+			name="publisherName"
+			column="publisher_name"
+			type="string"
+			not-null="false"
+			length="100"
+		/>
+		<property
+			name="accessionNo"
+			column="accession_no"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		
+		<property
+			name="authorId"
+			column="author_id"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="authorName"
+			column="author_name"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="authorInitName"
+			column="author_initial_name"
+			type="string"
+			not-null="false"
+			length="10"
+		/>
+		
+		<property
+			name="accessionId"
+			column="accession_id"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="accessionCode"
+			column="accession_code"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="availableDate"
+			column="available_date"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+	<property
+			name="categoryName"
+			column="category_name"
+			type="string"
+			not-null="false"
+			length="100"
+		/>
+<property
+			name="subcategoryName"
+			column="subcategory_name"
+			type="string"
+			not-null="false"
+			length="100"
+		/>
+
+		<property
+			name="categoryId"
+			column="category_id"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+<property
+			name="subCategoryId"
+			column="subcategory_id"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+<property
+			name="photoId"
+			column="photo_id"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+<property
+			name="photoData"
+			column="photo_data"
+			type="blob"
+			not-null="false"
+			
+		/>
+
+
+
+	</class>	
+</hibernate-mapping>

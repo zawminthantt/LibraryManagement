@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<!-- <bean id="idXxxDao" class="com.ictti.frame.dao.XxxDaoImpl"> <property 
+		name="sessionFactory" ref="sessionFactory" /> </bean> -->
+	<!-- DataSource definition -->
+
+	<bean id="idUserDao" class="com.ictti.library.dao.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="idUserTypeDao" class="com.ictti.library.dao.UserTypeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="idIcttiCourseDao" class="com.ictti.library.dao.IcttiCourseDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="idBookListDao" class="com.ictti.library.dao.BookListDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="idAuthorDao" class="com.ictti.library.dao.AuthorDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="idCategoryDao" class="com.ictti.library.dao.CategoryDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="idSubCategoryDao" class="com.ictti.library.dao.SubCategoryDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="idViewSearchBookDao" class="com.ictti.library.dao.ViewSearchBookDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- For Reserve -->
+
+	<bean id="idViewReserveBookDao" class="com.ictti.library.dao.ViewReserveBookDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="idBookReserveDao" class="com.ictti.library.dao.BookReserveDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="idCallNumberDao" class="com.ictti.library.dao.CallNumberDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="idBookOnLoanDao" class="com.ictti.library.dao.BookOnLoanDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="idViewBookListDao" class="com.ictti.library.dao.ViewBookListDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- For View Rent History -->
+
+	<bean id="idViewRentDao" class="com.ictti.library.dao.ViewRentedHistoryDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- for Admin Login Page -->
+	<bean id="idAdminDao" class="com.ictti.library.dao.AdminDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- For admin book registration (start) -->
+	<bean id="idPhotoDao" class="com.ictti.library.dao.PhotoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="idPublisherDao" class="com.ictti.library.dao.PublisherDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="idAccessionDao" class="com.ictti.library.dao.AccessionDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- For Book Author Dao Impl -->
+	<bean id="idBookAuthorDao" class="com.ictti.library.dao.BookAuthorDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- For Book Update -->
+	<bean id="idViewBookDetailDao" class="com.ictti.library.dao.ViewDetailBookDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- For Check Out -->
+	<bean id="idViewDetailBookDao" class="com.ictti.library.dao.ViewDetailBookDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- For ViewRecallByEmail -->
+	<bean id="idRecallDao" class="com.ictti.library.dao.RecallDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- For View Member Info -->
+	<bean id="idViewMemberInfoDao" class="com.ictti.library.dao.AdminViewMemberInfoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- For Book Status Dao Impl -->
+	<bean id="idBookStatusDao" class="com.ictti.library.dao.ViewBookStatusDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- For View Book Dao Impl -->
+	<bean id="idViewBookDao" class="com.ictti.library.dao.AdminViewBookDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+
+
+
+
+
+	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${db.driver}" />
+		<property name="url" value="${db.url}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+	</bean>
+	<bean id="dbConf" class="org.springframework.core.io.ClassPathResource">
+		<constructor-arg>
+			<value>database.properties</value>
+		</constructor-arg>
+	</bean>
+	<bean id="databaseConfPostProcessor"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<ref bean="dbConf" />
+		</property>
+	</bean>
+	<!-- //Transaction Manager -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- sessionFactory definition -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="mappingResources">
+			<list>
+				<value> com/ictti/library/dao/hbm/xml/AccessionCode.hbm.xml </value>
+				<value> com/ictti/library/dao/hbm/xml/Admin.hbm.xml </value>
+				<value> com/ictti/library/dao/hbm/xml/Author.hbm.xml </value>
+				<value> com/ictti/library/dao/hbm/xml/BookAuthor.hbm.xml </value>
+				<value> com/ictti/library/dao/hbm/xml/BookList.hbm.xml </value>
+				<value> com/ictti/library/dao/hbm/xml/BookOnLoan.hbm.xml </value>
+				<value> com/ictti/library/dao/hbm/xml/BookReserve.hbm.xml </value>
+				<value> com/ictti/library/dao/hbm/xml/CallNumber.hbm.xml </value>
+				<value> com/ictti/library/dao/hbm/xml/Category.hbm.xml </value>
+				<value> com/ictti/library/dao/hbm/xml/EmailLog.hbm.xml </value>
+				<value> com/ictti/library/dao/hbm/xml/Photo.hbm.xml </value>
+				<value> com/ictti/library/dao/hbm/xml/Publisher.hbm.xml </value>
+				<value> com/ictti/library/dao/hbm/xml/IcttiCourse.hbm.xml </value>
+				<value> com/ictti/library/dao/hbm/xml/SubCategory.hbm.xml </value>
+				<value> com/ictti/library/dao/hbm/xml/User.hbm.xml </value>
+				<value> com/ictti/library/dao/hbm/xml/UserType.hbm.xml </value>
+				<value> com/ictti/library/dao/hbm/xml/ViewDetailBook.hbm.xml </value>
+				<value> com/ictti/library/dao/hbm/xml/ViewSearchBook.hbm.xml </value>
+				<value> com/ictti/library/dao/hbm/xml/ViewRentedHistory.hbm.xml
+				</value>
+				<value> com/ictti/library/dao/hbm/xml/ViewReserveBook.hbm.xml
+				</value>
+				<value> com/ictti/library/dao/hbm/xml/viewrecall.hbm.xml
+				</value>
+				<value> com/ictti/library/dao/hbm/xml/ViewMemberInfo.hbm.xml
+				</value>
+				<value> com/ictti/library/dao/hbm/xml/ViewBookOnloan.hbm.xml
+				</value>
+				<value> com/ictti/library/dao/hbm/xml/ViewBookReserve.hbm.xml
+				</value>
+				<value> com/ictti/library/dao/hbm/xml/ViewMostRentBook.hbm.xml
+				</value>
+
+
+
+
+
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLInnoDBDialect
+                     </prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+</beans>
+        

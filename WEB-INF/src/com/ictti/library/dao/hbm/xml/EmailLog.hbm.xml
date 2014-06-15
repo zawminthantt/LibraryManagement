@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ictti.library.business.entity">
+	<class
+		name="EmailLog"
+		table="email_log"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="id"
+			type="integer"
+			column="email_id"
+		>
+			<generator class="identity"/>
+		</id>
+
+		<property
+			name="remindDate"
+			column="remind_date"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="emailStatus"
+			column="email_status"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+		<many-to-one
+			name="bookLoan"
+			column="book_loan_id"
+			class="BookOnLoan"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="user"
+			column="user_id"
+			class="User"
+			not-null="true"
+		>
+		</many-to-one>
+
+
+	</class>	
+</hibernate-mapping>

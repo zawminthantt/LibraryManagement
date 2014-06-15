@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ictti.library.business.entity">
+	<class
+		name="IcttiCourse"
+		table="ictti_course"
+	>
+		<meta attribute="sync-DAO">false</meta>
+
+		<meta attribute="sync-DAO">false</meta>
+
+		<id
+			name="id"
+			type="integer"
+			column="course_id"
+		>
+			<generator class="identity"/>
+		</id>
+
+		<property
+			name="courseName"
+			column="course_name"
+			type="string"
+			not-null="false"
+			length="200"
+		/>
+		<property
+			name="courseCode"
+			column="course_code"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="endDate"
+			column="end_date"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+
+
+	</class>	
+</hibernate-mapping>

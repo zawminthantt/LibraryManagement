@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ictti.library.business.entity">
+	<class
+		name="SubCategory"
+		table="sub_category"
+		lazy="false"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="id"
+			type="integer"
+			column="subcategory_id"
+		>
+			<generator class="identity"/>
+		</id>
+
+		<property
+			name="subCategoryName"
+			column="subcategory_name"
+			type="string"
+			not-null="false"
+			length="100"
+		/>
+		<many-to-one
+			name="category"
+			column="category_id"
+			class="Category"
+			not-null="false"
+		>
+		</many-to-one>
+	
+
+		<set name="bookLists" inverse="true" lazy="false">
+			<key column="subcategory_id"/>
+			<one-to-many class="BookList"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

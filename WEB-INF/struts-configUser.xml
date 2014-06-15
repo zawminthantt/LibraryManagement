@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration
+1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+	<form-beans>
+		<!-- For Login Form -->
+		<form-bean name="LoginFormBean"
+			type="com.ictti.library.presentation.form.UserForm">
+		</form-bean>
+		<!-- For Registration Form -->
+		<form-bean name="RegFormBean"
+			type="com.ictti.library.presentation.form.UserForm">
+		</form-bean>
+		<!-- For Update Profile Form -->
+		<form-bean name="UpdateProfileFormBean"
+			type="com.ictti.library.presentation.form.UserForm">
+		</form-bean>
+		<!-- For Outer Search Form -->
+		<form-bean name="SearchFormBean"
+			type="com.ictti.library.presentation.form.SearchForm">
+		</form-bean>
+		<!-- For Inner Search Form -->
+		<form-bean name="AutoFormBean"
+			type="com.ictti.library.presentation.form.SearchDetailForm">
+		</form-bean>
+		<form-bean name="ViewReserveFormBean"
+			type="com.ictti.library.presentation.form.ViewReserveBookForm">
+		</form-bean>
+		<!-- For View Rent History -->
+		<form-bean name="ViewRentFormBean"
+			type="com.ictti.library.presentation.form.UserForm">
+		</form-bean>
+	</form-beans>
+
+	<action-mappings>
+		<!-- For Login Form -->
+		<action path="/loginPath" name="LoginFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="true" input="/WEB-INF/jsp/login.jsp">
+			<forward name="gotoHome" path="/WEB-INF/jsp/home.jsp" />
+			<forward name="gotoLogin" path="/WEB-INF/jsp/login.jsp" />
+		</action>
+		
+		<action path="/logoutPath" name="LoginFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" input="/WEB-INF/jsp/login.jsp">
+			<forward name="gotoLogin" path="/WEB-INF/jsp/login.jsp" />
+		</action>
+		<!-- For Registration Form -->
+		<action path="/registerPathFirst" name="RegFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="false">
+			<forward name="success" path="/WEB-INF/jsp/register.jsp" />
+			<forward name="gotoRegister" path="/WEB-INF/jsp/register.jsp" />
+			<forward name="gotoLogin" path="/WEB-INF/jsp/login.jsp" />
+			<forward name="gotoHome" path="/WEB-INF/jsp/home.jsp" />
+		</action>
+		<action path="/registerPath" name="RegFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="true" input="/WEB-INF/jsp/register.jsp">
+			<forward name="gotoRegister" path="/WEB-INF/jsp/register.jsp" />
+			<forward name="gotoLogin" path="/WEB-INF/jsp/login.jsp" />
+			<forward name="gotoHome" path="/WEB-INF/jsp/home.jsp" />
+		</action>
+
+		<!-- For Update Profile Form -->
+		<action path="/updatePathFirst" name="UpdateProfileFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="false" input="/WEB-INF/jsp/update_profile.jsp">
+			<forward name="gotoUpdate" path="/WEB-INF/jsp/update_profile.jsp" />
+			<forward name="gotoLogin" path="/WEB-INF/jsp/login.jsp" />
+		</action>
+		<action path="/updatePath" name="UpdateProfileFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="true" input="/WEB-INF/jsp/update_profile.jsp">
+			<forward name="gotoUpdate" path="/WEB-INF/jsp/update_profile.jsp" />
+			<forward name="gotoHome" path="/WEB-INF/jsp/home.jsp" />
+
+		</action>
+		<!-- For Inner Search  -->
+		<action path="/autoComplementPath" name="AutoFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="gotoAuto" path="/WEB-INF/jsp/member_book_search.jsp" />
+			<forward name="gotoLogin" path="/WEB-INF/jsp/login.jsp" />
+			<forward name="gotoTitle" path="/WEB-INF/jsp/book_detail_search_000.jsp" />
+			<forward name="gotoAuthor" path="/WEB-INF/jsp/book_detail_search_000.jsp" />
+			<forward name="gotoDisplay" path="/WEB-INF/jsp/book_detail_search_001.jsp" />
+			<forward name="gotoSearch" path="/WEB-INF/jsp/book_detail_search_000.jsp" />
+			
+			
+		</action>
+		<!--  change -->
+		
+		<!-- For Outer Search  -->
+		<action path="/searchPath" name="SearchFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="false" input="/WEB-INF/jsp/book_search_000.jsp">
+			<forward name="gotoDetail" path="/WEB-INF/jsp/book_search_001.jsp" />
+		 <forward name="gotoLogin" path="/WEB-INF/jsp/login.jsp" />
+		 <forward name="gotoBook" path="/WEB-INF/jsp/login.jsp" />
+		 
+			
+		
+		  
+		</action>
+		<action path="/searchDetailPath" name="AutoFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="false" input="/WEB-INF/jsp/book_search_001.jsp" >
+		<forward name="gotoLogin" path="/WEB-INF/jsp/login.jsp" />
+		 <forward name="gotoDisplay" path="/WEB-INF/jsp/book_detail_search_001.jsp" />
+		 <forward name="gotoBack" path="/WEB-INF/jsp/book_detail_search_000.jsp" />
+			
+		
+		 </action>
+		<!-- for Reserve -->
+		<action path="/reservationPath" name="LoginFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="false">
+			<forward name="gotoReserveDetail" path="/WEB-INF/jsp/reserve_detail.jsp" />
+			<forward name="gotoHome" path="/WEB-INF/jsp/home.jsp" />
+			<forward name="gotoLogin" path="/WEB-INF/jsp/login.jsp" />
+		</action>
+		<action path="/reserveDetailPath" name="LoginFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="false" input="/WEB-INF/jsp/reserve_detail.jsp">
+			<forward name="gotoReserveDetail" path="/WEB-INF/jsp/reserve_detail.jsp" />
+			<forward name="gotoReserveConfirm" path="/WEB-INF/jsp/reserve_detail_001.jsp" />
+			<forward name="gotoHome" path="/WEB-INF/jsp/home.jsp" />
+			<forward name="gotoLogin" path="/WEB-INF/jsp/login.jsp" />
+		</action>
+		<!-- For View Rent History -->
+		<action path="/viewPath" name="ViewRentFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="false">
+			<forward name="gotoViewRent" path="/WEB-INF/jsp/view_rent_000.jsp" />
+			<forward name="gotoRenew" path="/WEB-INF/jsp/view_rent_001.jsp" /> 
+			<forward name="gotoLogin" path="/WEB-INF/jsp/login.jsp" />
+		</action>
+		<!-- For Renew Book -->
+		<action path="/renewPath" name="ViewRentFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="false">
+			<forward name="gotoRenew" path="/WEB-INF/jsp/view_rent_001.jsp" />
+			<forward name="gotoViewRent" path="/WEB-INF/jsp/view_rent_000.jsp" />
+			<forward name="gotoSuccessRenew" path="/WEB-INF/jsp/view_rent_002.jsp" /> 
+			 <forward name="gotoLogin" path="/WEB-INF/jsp/login.jsp" />
+		</action>
+		<!-- For Reserve Book -->
+		<action path="/viewReservePath" name="ViewReserveFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="false">
+			<forward name="gotoReserve" path="/WEB-INF/jsp/member_view_reserve.jsp" />
+			<forward name="gotoLogin" path="/WEB-INF/jsp/login.jsp" />
+		</action>
+		<!-- For Reserve cancel Book -->
+		<action path="/cancelReservePath" name="ViewReserveFormBean"
+			type="org.springframework.web.struts.DelegatingActionProxy" scope="session"
+			validate="false" input="/WEB-INF/jsp/member_view_reserve.jsp">
+			<forward name="gotoReserve" path="/WEB-INF/jsp/member_view_reserve.jsp" />
+			<forward name="gotoCancel" path="/WEB-INF/jsp/member_view_reserve_001.jsp" />
+			<forward name="gotoLogin" path="/WEB-INF/jsp/login.jsp" />
+		</action>
+		
+		
+	
+
+	</action-mappings>
+</struts-config>

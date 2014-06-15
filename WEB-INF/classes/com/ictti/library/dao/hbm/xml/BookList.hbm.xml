@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ictti.library.business.entity">
+	<class
+		name="BookList"
+		table="book_list"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="id"
+			type="integer"
+			column="book_id"
+		>
+			<generator class="identity"/>
+		</id>
+
+		<property
+			name="registerDate"
+			column="register_date"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="title"
+			column="title"
+			type="string"
+			not-null="false"
+			length="100"
+		/>
+		<property
+			name="isbnNo"
+			column="ISBN_no"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="edition"
+			column="edition"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="price"
+			column="price"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="remark"
+			column="remark"
+			type="string"
+			not-null="false"
+			length="100"
+		/>
+		<property
+			name="year"
+			column="year"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="noOfCopy"
+			column="no_of_copy"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="noOfPages"
+			column="no_of_pages"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="orgName"
+			column="org_name"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="resources"
+			column="resources"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<many-to-one
+			name="subcategory"
+			column="subcategory_id"
+			class="SubCategory"
+			not-null="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="pub"
+			column="pub_id"
+			class="Publisher"
+			not-null="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="category"
+			column="category_id"
+			class="Category"
+			not-null="false"
+		>
+		</many-to-one>
+	
+
+		<set name="bookAuthors" inverse="true" lazy="false">
+			<key column="book_id"/>
+			<one-to-many class="BookAuthor"/>
+		</set>
+
+		<set name="photos" inverse="true" lazy="false">
+			<key column="book_id"/>
+			<one-to-many class="Photo"/>
+		</set>
+
+		<set name="callNumbers" inverse="true" lazy="false">
+			<key column="book_id"/>
+			<one-to-many class="CallNumber"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>
